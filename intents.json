@@ -9,14 +9,14 @@
           "Buen dia"
         ],
         "responses": [
-          "Hey :-), Entra a este link para responder una preguntas: ",
-          "Hola, Entra a este link para responder una preguntas: ",
-          "Hola como estas, Entra a este link para responder una preguntas: "
+          "Hey :-), Entra a este link para responder una preguntas: https://m.me/112042994622906",
+          "Hola, Entra a este link para responder una preguntas: https://m.me/112042994622906",
+          "Hola como estas, Entra a este link para responder una preguntas: https://m.me/112042994622906"
         ]
       },
       {
         "tag": "adios",
-        "patterns": ["Bye", "chau", "nos vemos luego"],
+        "patterns": ["Bye", "chau", "nos vemos luego", "adios"],
         "responses": [
           "Nos vemos luego",
           "Ten un buen dia",
