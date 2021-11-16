@@ -1,0 +1,33 @@
+{
+    "intents": [
+      {
+        "tag": "greeting",
+        "patterns": [
+          "Hola",
+          "Hey",
+          "Como estas",
+          "Buen dia"
+        ],
+        "responses": [
+          "Hey :-), Entra a este link para responder una preguntas: ",
+          "Hola, Entra a este link para responder una preguntas: ",
+          "Hola como estas, Entra a este link para responder una preguntas: "
+        ]
+      },
+      {
+        "tag": "adios",
+        "patterns": ["Bye", "chau", "nos vemos luego"],
+        "responses": [
+          "Nos vemos luego",
+          "Ten un buen dia",
+          "Adio! te espero luego"
+        ]
+      },
+      {
+        "tag": "gracias",
+        "patterns": ["Gracias", "muchas gracias"],
+        "responses": ["Feliz de ayudarte!", "Cuando quieras!"]
+      }
+      
+    ]
+  }
