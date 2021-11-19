@@ -8,6 +8,7 @@ import cv2
 import imutils
 import os
 from chat import get_response, bot_name
+import speech_recognition as sr
 
 
 
@@ -82,6 +83,7 @@ class PageStart(tk.Frame):
         self.msg_entry.focus()
         self.msg_entry.pack(fill = "x")
         self.msg_entry.bind("<Return>", self._on_enter_pressed)
+        self.msg_entry.bind("<Return>", self.speech)
 
         #Button send 
         button_send = tk.Button(self.msg_entry, text = "SEND", command= lambda: self._on_enter_pressed(None))
@@ -93,7 +95,20 @@ class PageStart(tk.Frame):
         button.pack()
         
     
-       
+    def speech(self, event):
+        mic = sr.Microphone()
+
+        recog = sr.Recognizer()
+
+        with mic as audio_file:
+            print("Speak Please")
+
+            recog.adjust_for_ambient_noise(audio_file)
+            audio = recog.listen(audio_file)
+            msg = recog.recognize_google(audio, language='es-PER')
+        self._insert_message(msg, "TU")
+        
+
 
     def _on_enter_pressed(self, event):
         msg = self.msg_entry.get() 
@@ -156,11 +171,11 @@ class PageOne(tk.Frame):
                 frame = imutils.resize(frame, width=640)
                 frame = deteccion_facilal(frame)
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                im = Image.fromarray(frame)
+                img = Image.fromarray(frame)
                 img = ImageTk.PhotoImage(image=im)
                 lblVideo.configure(image=img)
                 lblVideo.image = img
-                lblVideo.after(20, visualizar)
+                lblVideo.after(10, visualizar)
             else:
                 lblVideo.image = ""
                 lblInfoVideoPath.configure(text="")
@@ -171,22 +186,25 @@ class PageOne(tk.Frame):
                 cap.release()
 
         def deteccion_facilal(frame):
-            '''import Final as fn
-            fn.emotion_reco()'''
+            '''import Final2 as fn
+            fn.inicio(path_video, cap)'''
+
+            import Final2 as fn
+            
             
            
-            method = 'LBPH'
+            '''method = 'LBPH'
 
             if method == 'LBPH': emotion_recognizer = cv2.face.LBPHFaceRecognizer_create()
 
             emotion_recognizer.read('modelo'+method+'.xml')
             # --------------------------------------------------------------------------------
 
-            dataPath = 'D:\DEVELOPER\Hackaton_app\Hackaton\Data' 
+            dataPath = 'D:\DEV\Hackaton_GUI\Data' 
             imagePath = os.listdir(dataPath)
             print('imagePaths=',imagePath)
 
-            #cap = cv2.VideoCapture(path_video)
+            cap = cv2.VideoCapture(path_video)
             #cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)
             faceClassif = cv2.CascadeClassifier(cv2.data.haarcascades+'haarcascade_frontalface_default.xml')
 
@@ -195,21 +213,15 @@ class PageOne(tk.Frame):
                 ret,frame = cap.read()
                 if ret == False: break
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                faces = faceClassif.detectMultiScale(gray,1.3,5)
                 auxFrame = gray.copy()
 
-
-
-                
+                faces = faceClassif.detectMultiScale(gray,1.3,5)
 
                 for (x,y,w,h) in faces:
                     rostro = auxFrame[y:y+h,x:x+w]
                     rostro = cv2.resize(rostro,(150,150),interpolation= cv2.INTER_CUBIC)
                     result = emotion_recognizer.predict(rostro)
-
                     cv2.putText(frame,'{}'.format(result),(x,y-5),1,1.3,(255,255,0),1,cv2.LINE_AA)
-
-                    
                     # LBPHFace
                     if method == 'LBPH':
                         if result[1] < 60:
@@ -219,23 +231,12 @@ class PageOne(tk.Frame):
                         else:
                             cv2.putText(frame,'No identificado',(x,y-20),2,0.8,(0,0,255),1,cv2.LINE_AA)
                             cv2.rectangle(frame, (x,y),(x+w,y+h),(0,0,255),2)
-
-                return frame
-                '''cv2.imshow('Frame',frame)
-                k = cv2.waitKey(1)
-                if k == 27:
-                    break'''
-
+            return frame
+            #cap.release()
+            #cv2.destroyAllWindows()'''
+                    
             
-            cap.release()
-            #cv2.destroyAllWindows()
-            #return frame
-            
-            '''gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            faces = faceClassif.detectMultiScale(gray, 1.3, 5)
-            for (x, y, w, h) in faces:
-                frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            return frame'''
+
             
 
         def finalizar_limpiar():
@@ -302,8 +303,7 @@ def verif(param):
 
 
 
-app = SeaofBTCapp()
-app.mainloop()
+
 
 
 
