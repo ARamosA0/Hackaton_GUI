@@ -171,7 +171,7 @@ class PageOne(tk.Frame):
                 frame = imutils.resize(frame, width=640)
                 frame = deteccion_facilal(frame)
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                img = Image.fromarray(frame)
+                im = Image.fromarray(frame)
                 img = ImageTk.PhotoImage(image=im)
                 lblVideo.configure(image=img)
                 lblVideo.image = img

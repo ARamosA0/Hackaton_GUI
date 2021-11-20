@@ -6,17 +6,17 @@
           "Hola",
           "Hey",
           "Como estas",
-          "Buen dia"
+          "Buen dia",
+          "Buenos dias"
         ],
         "responses": [
-          "Hey :-), Entra a este link para responder una preguntas: https://m.me/112042994622906",
-          "Hola, Entra a este link para responder una preguntas: https://m.me/112042994622906",
-          "Hola como estas, Entra a este link para responder una preguntas: https://m.me/112042994622906"
+
+          "Hola como estas, para contiruar puedes entrar a este link para responder unas preguntas: https://m.me/112042994622906 o puedes seguir hablando conmigo"
         ]
       },
       {
         "tag": "adios",
-        "patterns": ["Bye", "chau", "nos vemos luego", "adios"],
+        "patterns": ["Bye", "chau", "nos vemos luego", "adios", "adiós"],
         "responses": [
           "Nos vemos luego",
           "Ten un buen dia",
@@ -27,7 +27,27 @@
         "tag": "gracias",
         "patterns": ["Gracias", "muchas gracias"],
         "responses": ["Feliz de ayudarte!", "Cuando quieras!"]
-      }
+      },
+      {
+        "tag": "seguir",
+        "patterns": ["Quiero seguir", "me quedo"],
+        "responses": ["Me alegra que te quedes!, Como estuvo tu dia?"]
+      },  
+      {
+        "tag": "Buen dia",
+        "patterns": ["Estuvo bien", "Bien", "Muy bien", "espectacular", "Fantastico"],
+        "responses": ["Me alegra mucho!, cuentame un poco mas"]
+      },  
+      {
+        "tag": "dia regular",
+        "patterns": ["Regular", "estuvo"],
+        "responses": ["Que paso?, porque no estuvo tan bien?"]
+      },
+      {
+        "tag": "mal dia",
+        "patterns": ["mal", "Horrible", "muy mal", "desastroso"],
+        "responses": ["Y eso?, que sucedio"]
+      }  
       
     ]
   }
